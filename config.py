@@ -1,0 +1,2 @@
+MODEL_NAME = "qwen2.5-coder:7b"
+MAX_CHARS_PER_CHUNK = 12000
