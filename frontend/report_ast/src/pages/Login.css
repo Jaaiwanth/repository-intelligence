@@ -1,0 +1,64 @@
+.login-container {
+    background-image: 
+        linear-gradient(to right, #111111 1px, transparent 1px),
+        linear-gradient(to bottom, #111111 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-color: #131313;
+}
+.caret-blink {
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.login-container input[type="text"], .login-container input[type="password"] {
+    border-radius: 0;
+    background-color: #000;
+    border: 2px solid #ffffff;
+    color: #79ff5b;
+    font-family: 'JetBrains Mono', monospace;
+}
+.login-container input[type="text"]:focus, .login-container input[type="password"]:focus {
+    outline: none;
+    border-color: #79ff5b;
+    box-shadow: 4px 4px 0px 0px #79ff5b;
+    transform: translate(-4px, -4px);
+    transition: all 0.1s ease-in-out;
+}
+
+.login-container input[type="checkbox"] {
+    appearance: none;
+    background-color: #000;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 2px solid #ffffff;
+    border-radius: 0;
+    display: grid;
+    place-content: center;
+}
+
+.login-container input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #79ff5b;
+    background-color: #79ff5b;
+    transform-origin: center;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.login-container input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.login-container input[type="checkbox"]:focus {
+    outline: none;
+    border-color: #79ff5b;
+}

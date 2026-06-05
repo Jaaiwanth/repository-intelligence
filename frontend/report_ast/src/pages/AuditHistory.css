@@ -1,0 +1,12 @@
+.audit-history-body {
+    background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px),
+                      linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-color: #131313;
+}
+.audit-history-body .cyber-shadow-primary { box-shadow: 8px 8px 0px 0px rgba(121,255,91,1); }
+.audit-history-body .cyber-shadow-secondary { box-shadow: 8px 8px 0px 0px rgba(255,171,243,1); }
+.audit-history-body .btn-press:active { transform: translate(4px, 4px); box-shadow: 4px 4px 0px 0px currentColor; }
+.audit-history-body .glitch-hover:hover { background-color: #ffffff; color: #000000; }
+
+.audit-history-body * { border-radius: 0 !important; }

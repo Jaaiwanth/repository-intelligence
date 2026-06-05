@@ -1,0 +1,35 @@
+.dashboard-container {
+    background-color: #050505;
+    background-image: linear-gradient(rgba(121, 255, 91, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(121, 255, 91, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.dashboard-container .glitch-hover:hover {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+    transition: all 0.1s ease-in-out;
+}
+
+.dashboard-container .neon-shadow {
+    box-shadow: 8px 8px 0px 0px #79ff5b;
+}
+
+.dashboard-container .status-pulse {
+    animation: pulse-frame 1s infinite steps(2);
+}
+
+@keyframes pulse-frame {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.dashboard-container .caret-blink {
+    animation: blink 0.5s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}

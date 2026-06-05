@@ -1,0 +1,22 @@
+.report-viewer-body {
+    background-color: #131313;
+    background-image: 
+        linear-gradient(to right, #201f1f 1px, transparent 1px),
+        linear-gradient(to bottom, #201f1f 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.report-viewer-body .glitch-hover:hover {
+    transform: translate(4px, 4px);
+    box-shadow: none !important;
+}
+
+.report-viewer-body .pulse-status {
+    animation: pulse-bg 2s infinite;
+}
+
+@keyframes pulse-bg {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
