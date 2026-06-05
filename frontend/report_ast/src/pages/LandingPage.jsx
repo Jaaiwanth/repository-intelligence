@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
   return (
@@ -50,10 +51,10 @@ export default function LandingPage() {
                 Audit your entire repository in seconds. Deep AST analysis meets LLM synthesis for comprehensive PDF reports. Uncover vulnerabilities, technical debt, and architectural flaws before they become production incidents.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 mt-4 w-full">
-                <button className="bg-primary text-black px-8 py-4 font-bold text-lg brutal-border hover:bg-secondary hover:text-white hover:border-secondary transition-colors shadow-neo active:translate-x-1 active:translate-y-1 active:shadow-none flex items-center justify-center gap-2 w-full sm:w-auto">
+                <Link to="/dashboard" className="bg-primary text-black px-8 py-4 font-bold text-lg brutal-border hover:bg-secondary hover:text-white hover:border-secondary transition-colors shadow-neo active:translate-x-1 active:translate-y-1 active:shadow-none flex items-center justify-center gap-2 w-full sm:w-auto">
                   Get Started
                   <span className="material-symbols-outlined text-2xl font-bold block">arrow_forward</span>
-                </button>
+                </Link>
                 <button className="bg-black border-4 border-white text-white px-8 py-4 font-bold text-lg hover:bg-white hover:text-black transition-colors shadow-[8px_8px_0px_0px_#ffffff] active:translate-x-1 active:translate-y-1 active:shadow-none flex items-center justify-center gap-2 w-full sm:w-auto">
                   <span className="material-symbols-outlined text-2xl block">terminal</span>
                   View Documentation

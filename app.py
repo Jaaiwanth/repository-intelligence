@@ -47,8 +47,18 @@ def generate_report(data : RepoRequest):
             all_metadata
         ),
         "file_metadata": all_metadata,
-        "project_report": report
+        "project_report": report,
+        "pdf_url": "/project_report.pdf"
     }
+
+from fastapi.responses import FileResponse
+import os
+
+@app.get("/project_report.pdf")
+def get_pdf():
+    if os.path.exists("project_report.pdf"):
+        return FileResponse("project_report.pdf")
+    return {"error": "File not found"}
 
 
 

@@ -1,5 +1,6 @@
 def read_file(file_path):
-
+    if not file_path.endswith(".py"):
+        return None
     try:
         with open(
             file_path,

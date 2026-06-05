@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './AnalysisProgress.css';
 
 export default function AnalysisProgress() {
   const [status, setStatus] = useState("PINGING_SERVER...");
   const [glitch, setGlitch] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const repoPath = location.state?.repoPath;
 
   useEffect(() => {
     const messages = [
@@ -26,6 +30,28 @@ export default function AnalysisProgress() {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (repoPath) {
+      fetch('/generate_report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ repo_path: repoPath })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.pdf_url) {
+          navigate('/report', { state: { pdfUrl: data.pdf_url } });
+        } else {
+          setStatus("ERROR_GENERATING_REPORT: " + (data.error || "Unknown"));
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        setStatus("CONNECTION_ERROR");
+      });
+    }
+  }, [repoPath, navigate]);
 
   return (
     <div className="tech-grid min-h-screen w-full flex items-center justify-center p-6 overflow-hidden selection:bg-[#ff00ff] selection:text-black">

@@ -1,7 +1,11 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './ReportViewer.css';
 
 export default function ReportViewer() {
+  const location = useLocation();
+  const pdfUrl = location.state?.pdfUrl || "/project_report.pdf";
+
   return (
     <div className="report-viewer-body bg-background text-on-background min-h-screen pt-24 pl-0 md:pl-64">
       {/* TopNavBar */}
@@ -62,10 +66,10 @@ export default function ReportViewer() {
         <section className="w-full md:w-1/3 flex flex-col gap-8 h-full">
           <div className="bg-[#131313] border-4 border-primary relative h-full flex flex-col">
             <div className="p-6 border-t-2 border-outline flex flex-col gap-4 mt-auto">
-              <button className="w-full bg-primary text-black border-4 border-black font-mono font-bold text-sm uppercase py-4 shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] glitch-hover transition-all flex items-center justify-center gap-2">
+              <a href={pdfUrl} download className="w-full bg-primary text-black border-4 border-black font-mono font-bold text-sm uppercase py-4 shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] glitch-hover transition-all flex items-center justify-center gap-2 block text-center cursor-pointer">
                 <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>download</span>
                 DOWNLOAD_PDF
-              </button>
+              </a>
             </div>
           </div>
         </section>
@@ -90,47 +94,8 @@ export default function ReportViewer() {
                 </button>
               </div>
             </div>
-            <div className="flex-grow p-8 overflow-y-auto bg-[#0e0e0e] relative">
-              {/* Faux PDF Content Page */}
-              <div className="bg-white text-black p-12 min-h-full border-2 border-outline shadow-[4px_4px_0px_0px_rgba(142,146,137,1)] max-w-3xl mx-auto font-mono text-sm">
-                <div className="border-b-4 border-black pb-6 mb-8 flex justify-between items-end">
-                  <div>
-                    <h1 className="font-heading text-4xl text-black uppercase mb-2">Automated Security Analysis Report</h1>
-                    <div className="font-mono font-bold">TARGET: core-auth-service-v2</div>
-                  </div>
-                  <div className="font-mono text-xs text-right">
-                    DATE: 2023-10-27<br />
-                    ID: SA-9942-X
-                  </div>
-                </div>
-                <div className="mb-8">
-                  <h2 className="font-heading text-2xl text-black uppercase mb-4">1. Executive Summary</h2>
-                  <p className="mb-4">The automated scan identified <span className="bg-[#ffb4ab] px-1 font-bold">12 critical vulnerabilities</span> primarily concentrated within the JWT validation routines and database query sanitization layers. Immediate remediation is required to prevent potential privilege escalation attacks.</p>
-                </div>
-                <div className="mb-8">
-                  <h2 className="font-heading text-2xl text-black uppercase mb-4">2. Critical Findings</h2>
-                  <div className="border-2 border-black p-4 mb-4">
-                    <div className="flex justify-between items-center mb-2 border-b-2 border-black pb-2">
-                      <span className="font-mono font-bold">CVE-2023-XXXX: SQL Injection</span>
-                      <span className="bg-[#ffb4ab] text-black font-bold px-2 py-1 text-xs">CRITICAL</span>
-                    </div>
-                    <p className="mb-2">Improper sanitization of user input in `src/db/auth_query.go` line 142.</p>
-                    <pre className="bg-gray-200 text-black p-4 font-mono text-xs overflow-x-auto border-2 border-black"><code>{`func GetUser(id string) {
-  // VULNERABLE: Direct string concatenation
-  query := "SELECT * FROM users WHERE id = '" + id + "'"
-  db.Execute(query)
-}`}</code></pre>
-                  </div>
-                  <div className="border-2 border-black p-4 mb-4">
-                    <div className="flex justify-between items-center mb-2 border-b-2 border-black pb-2">
-                      <span className="font-mono font-bold">VULN-002: Hardcoded Secret</span>
-                      <span className="bg-[#ffabf3] text-black font-bold px-2 py-1 text-xs">HIGH</span>
-                    </div>
-                    <p className="mb-2">API key detected in plaintext within configuration initialization.</p>
-                    <pre className="bg-gray-200 text-black p-4 font-mono text-xs overflow-x-auto border-2 border-black"><code>{`const AWS_ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE"`}</code></pre>
-                  </div>
-                </div>
-              </div>
+            <div className="flex-grow p-8 overflow-y-auto bg-[#0e0e0e] relative h-full">
+              <iframe src={pdfUrl} className="w-full h-full min-h-[600px] border-2 border-outline shadow-[4px_4px_0px_0px_rgba(142,146,137,1)] max-w-4xl mx-auto block bg-white" />
             </div>
             <div className="border-t-2 border-outline p-4 bg-[#1c1b1b] flex justify-between items-center font-mono text-xs text-outline">
               <div>PAGE 1 OF 42</div>

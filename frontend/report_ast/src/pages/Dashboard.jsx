@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 export default function Dashboard() {
+  const [repoPath, setRepoPath] = useState('');
+  const navigate = useNavigate();
+
+  const handleInitiate = () => {
+    if (repoPath) {
+      navigate('/progress', { state: { repoPath } });
+    }
+  };
+
   return (
     <div className="dashboard-container text-on-background font-mono min-h-screen">
       <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-24 bg-background border-b-8 border-outline shadow-[8px_8px_0px_0px_rgba(121,255,91,1)]">
@@ -73,10 +83,12 @@ export default function Dashboard() {
                 className="w-full bg-black border-2 border-primary text-primary font-mono text-lg p-6 pl-16 focus:outline-none focus:border-primary placeholder-gray-500" 
                 placeholder="ENTER_REPOSITORY_URL_OR_ID..." 
                 type="text" 
+                value={repoPath}
+                onChange={(e) => setRepoPath(e.target.value)}
               />
               <div className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-6 bg-primary caret-blink"></div>
             </div>
-            <button className="bg-primary text-black border-4 border-black font-heading text-2xl uppercase px-12 py-4 neon-shadow glitch-hover flex items-center gap-4 mt-8">
+            <button onClick={handleInitiate} className="bg-primary text-black border-4 border-black font-heading text-2xl uppercase px-12 py-4 neon-shadow glitch-hover flex items-center gap-4 mt-8">
               <span className="material-symbols-outlined text-4xl">play_circle</span>
               INITIATE_AUDIT_SEQUENCE
             </button>
